@@ -534,6 +534,21 @@ Set the active variant of an experiment.
     * **Type:** `string`
     * **Example:** `"A"`
 
+#### `emitter.setRandomActiveVariant(experimentName, variantName)`
+
+Choose a random variant of an experiment and set is as active variant of an experiment.
+
+* **Return Type:** `string`
+* **Parameters:**
+  * `experimentName` - Name of the experiment.
+    * **Required**
+    * **Type:** `string`
+    * **Example:** `"My Example"`
+  * `userIdentifier` - Distinct user identifier. When defined, this value is hashed to choose a variant if `defaultVariantName` or a stored value is not present. Useful for [server side rendering](#server-rendering).
+    * **Optional**
+    * **Type:** `string`
+    * **Example:** `"7cf61a4521f24507936a8977e1eee2d4"`
+
 #### `emitter.getActiveVariant(experimentName)`
 
 Returns the variant name currently displayed by the experiment.
