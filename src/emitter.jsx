@@ -1,4 +1,5 @@
 import {EventEmitter} from 'fbemitter';
+import crc32 from "fbjs/lib/crc32";
 
 let values = {};
 let experiments = {};
@@ -194,11 +195,11 @@ PushtellEventEmitter.prototype.setRandomActiveVariant = function(experimentName,
   */
 
   // Sorted array of the variant names, example: ["A", "B", "C"]
-  const variants = emitter.getSortedVariants(experimentName);
+  const variants = this.getSortedVariants(experimentName);
   // Array of the variant weights, also sorted by variant name. For example, if
   // variant C had weight 2, variant A had weight 4, and variant B had weight 8
   // return [4, 8, 2] to correspond with ["A", "B", "C"]
-  const weights = emitter.getSortedVariantWeights(experimentName);
+  const weights = this.getSortedVariantWeights(experimentName);
   // Sum the weights
   const weightSum = weights.reduce((a, b) => {
     return a + b;
@@ -216,7 +217,7 @@ PushtellEventEmitter.prototype.setRandomActiveVariant = function(experimentName,
       break;
     }
   }
-  emitter.setActiveVariant(experimentName, selectedVariant);
+  this.setActiveVariant(experimentName, selectedVariant);
   return selectedVariant;
 }
 

@@ -54,6 +54,7 @@ Please [★ on GitHub](https://github.com/pushtell/react-ab-test)!
     - [`emitter.addWinListener([experimentName, ] callback)`](#emitteraddwinlistenerexperimentname--callback)
     - [`emitter.defineVariants(experimentName, variantNames [, variantWeights])`](#emitterdefinevariantsexperimentname-variantnames--variantweights)
     - [`emitter.setActiveVariant(experimentName, variantName)`](#emittersetactivevariantexperimentname-variantname)
+    - [`emitter.setRandomActiveVariant(experimentName, variantName)`](#emittersetrandomactivevariantexperimentname-variantname)
     - [`emitter.getActiveVariant(experimentName)`](#emittergetactivevariantexperimentname)
     - [`emitter.getSortedVariants(experimentName)`](#emittergetsortedvariantsexperimentname)
   - [`Subscription`](#subscription)
