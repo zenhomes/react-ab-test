@@ -56,6 +56,7 @@ Please [★ on GitHub](https://github.com/pushtell/react-ab-test)!
     - [`emitter.setActiveVariant(experimentName, variantName)`](#emittersetactivevariantexperimentname-variantname)
     - [`emitter.setRandomActiveVariant(experimentName, variantName)`](#emittersetrandomactivevariantexperimentname-variantname)
     - [`emitter.getActiveVariant(experimentName)`](#emittergetactivevariantexperimentname)
+    - [`emitter.getActiveVariantWithOverride(experimentName)`](#emittergetactivevariantwithoverrideexperimentname)
     - [`emitter.getSortedVariants(experimentName)`](#emittergetsortedvariantsexperimentname)
   - [`Subscription`](#subscription)
     - [`subscription.remove()`](#subscriptionremove)
@@ -553,6 +554,19 @@ Choose a random variant of an experiment and set is as active variant of an expe
 #### `emitter.getActiveVariant(experimentName)`
 
 Returns the variant name currently displayed by the experiment.
+
+* **Return Type:** `string`
+* **Parameters:**
+  * `experimentName` - Name of the experiment.
+    * **Required**
+    * **Type:** `string`
+    * **Example:** `"My Example"`
+
+#### `emitter.getActiveVariantWithOverride(experimentName)`
+
+Returns the variant name currently displayed by the experiment, including manual localStorage overrides.
+To perform an override on a browser instance run:
+`window.localStorage.EXPERIMENT_NAME = 'EXPERIMENT_VARIANT';`
 
 * **Return Type:** `string`
 * **Parameters:**

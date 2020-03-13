@@ -221,6 +221,18 @@ PushtellEventEmitter.prototype.setRandomActiveVariant = function(experimentName,
   return selectedVariant;
 }
 
+PushtellEventEmitter.prototype.getActiveVariantWithOverride = function(experimentName){
+  if (typeof window !== 'undefined' && 'localStorage' in window && window['localStorage'] !== null) {
+    const experimentVariant = window.localStorage.getItem(experimentName);
+    
+    if (typeof experimentVariant === 'string' && experimentVariant.length > 0) {
+        return experimentVariant;
+    }
+  }
+
+  return this.getActiveVariant(experimentName);
+}
+
 PushtellEventEmitter.prototype.addExperimentVariant = function(experimentName, variantName){
   experiments[experimentName] = experiments[experimentName] || {};
   experimentWeights[experimentName] = experimentWeights[experimentName] || {};
