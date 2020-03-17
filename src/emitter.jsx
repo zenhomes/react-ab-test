@@ -219,7 +219,11 @@ PushtellEventEmitter.prototype.setRandomActiveVariant = function(experimentName,
     }
   }
   this.setActiveVariant(experimentName, selectedVariant);
-  store.setItem('PUSHTELL-' + experimentName, selectedVariant);
+  
+  const storedValue = store.getItem('PUSHTELL-' + experimentName);
+  if(typeof storedValue !== "string") {
+    store.setItem('PUSHTELL-' + experimentName, selectedVariant);
+  }
   return selectedVariant;
 }
 
