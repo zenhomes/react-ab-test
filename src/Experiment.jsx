@@ -2,30 +2,7 @@ import React, {Component} from "react";
 import PropTypes from 'prop-types';
 import CoreExperiment from "./CoreExperiment";
 import emitter from "./emitter";
-
-let store;
-
-const noopStore = {
-  getItem: function(){},
-  setItem: function(){}
-};
-
-if (typeof window !== 'undefined' && 'localStorage' in window && window['localStorage'] !== null) {
-  try {
-    let key = '__pushtell_react__';
-    window.localStorage.setItem(key, key);
-    if (window.localStorage.getItem(key) !== key) {
-      store = noopStore;
-    } else {
-      window.localStorage.removeItem(key);
-      store = window.localStorage;
-    }
-  } catch (e) {
-    store = noopStore;
-  }
-} else {
-  store = noopStore;
-}
+import store from "./store";
 
 emitter.addActiveVariantListener(function (experimentName, variantName, skipSave) {
   if (skipSave) {
@@ -48,7 +25,9 @@ export default class Experiment extends Component {
   };
 
   getSelectedVariant = () => {
-    return emitter.setRandomActiveVariant(this.props.name, this.props.userIdentifier);
+    const activeVariant = emitter.getRandomVariant(this.props.name, this.props.userIdentifier);
+    emitter.setActiveVariant(this.props.name, activeVariant);
+    return activeVariant;
   }
 
   getLocalStorageValue = () => {

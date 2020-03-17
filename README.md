@@ -55,6 +55,7 @@ Please [★ on GitHub](https://github.com/pushtell/react-ab-test)!
     - [`emitter.defineVariants(experimentName, variantNames [, variantWeights])`](#emitterdefinevariantsexperimentname-variantnames--variantweights)
     - [`emitter.setActiveVariant(experimentName, variantName)`](#emittersetactivevariantexperimentname-variantname)
     - [`emitter.setRandomActiveVariant(experimentName, variantName)`](#emittersetrandomactivevariantexperimentname-variantname)
+    - [`emitter.getRandomVariant(experimentName, variantName)`](#emittergetrandomvariantexperimentname-variantname)
     - [`emitter.getActiveVariant(experimentName)`](#emittergetactivevariantexperimentname)
     - [`emitter.getActiveVariantWithOverride(experimentName)`](#emittergetactivevariantwithoverrideexperimentname)
     - [`emitter.getSortedVariants(experimentName)`](#emittergetsortedvariantsexperimentname)
@@ -538,7 +539,22 @@ Set the active variant of an experiment.
 
 #### `emitter.setRandomActiveVariant(experimentName, variantName)`
 
-Choose a random variant of an experiment and set is as active variant of an experiment.
+Pick and store a random variant of an experiment.
+
+* **Return Type:** `string`
+* **Parameters:**
+  * `experimentName` - Name of the experiment.
+    * **Required**
+    * **Type:** `string`
+    * **Example:** `"My Example"`
+  * `userIdentifier` - Distinct user identifier. When defined, this value is hashed to choose a variant if `defaultVariantName` or a stored value is not present. Useful for [server side rendering](#server-rendering).
+    * **Optional**
+    * **Type:** `string`
+    * **Example:** `"7cf61a4521f24507936a8977e1eee2d4"`
+
+#### `emitter.getRandomVariant(experimentName, variantName)`
+
+Return a random variant of an experiment.
 
 * **Return Type:** `string`
 * **Parameters:**
