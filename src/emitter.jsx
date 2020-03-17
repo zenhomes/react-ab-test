@@ -178,7 +178,7 @@ PushtellEventEmitter.prototype.setActiveVariant = function(experimentName, varia
   emitter.emit("active-variant", experimentName, variantName, passthrough);
 }
 
-PushtellEventEmitter.prototype.setRandomActiveVariant = function(experimentName, userIdentifier){
+PushtellEventEmitter.prototype.getRandomVariant = function(experimentName, userIdentifier){
   /*
 
   Choosing a weighted variant:
@@ -218,14 +218,26 @@ PushtellEventEmitter.prototype.setRandomActiveVariant = function(experimentName,
       break;
     }
   }
-  this.setActiveVariant(experimentName, selectedVariant);
-  
-  const storedValue = store.getItem('PUSHTELL-' + experimentName);
-  if(typeof storedValue !== "string") {
-    store.setItem('PUSHTELL-' + experimentName, selectedVariant);
-  }
+
   return selectedVariant;
 }
+
+PushtellEventEmitter.prototype.setRandomActiveVariant = function(experimentName, userIdentifier){
+  let activeVariant;
+
+  const storedValue = store.getItem('PUSHTELL-' + experimentName);
+
+  if(typeof storedValue === "string") {
+    activeVariant = storedValue;
+  } else {
+    activeVariant = this.getRandomVariant(experimentName, userIdentifier);
+    store.setItem('PUSHTELL-' + experimentName, activeVariant);
+  }
+  
+  this.setActiveVariant(experimentName, activeVariant);
+
+  return activeVariant;
+};
 
 PushtellEventEmitter.prototype.getActiveVariantWithOverride = function(experimentName){
   if (typeof window !== 'undefined' && 'localStorage' in window && window['localStorage'] !== null) {

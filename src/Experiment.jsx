@@ -25,7 +25,9 @@ export default class Experiment extends Component {
   };
 
   getSelectedVariant = () => {
-    return emitter.setRandomActiveVariant(this.props.name, this.props.userIdentifier);
+    const activeVariant = emitter.getRandomVariant(this.props.name, this.props.userIdentifier);
+    emitter.setActiveVariant(this.props.name, activeVariant);
+    return activeVariant;
   }
 
   getLocalStorageValue = () => {
