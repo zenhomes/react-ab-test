@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "fbemitter": "^2.0.2",
-    "fbjs": "~0",
+    "fbjs": "~0.8.17",
     "prop-types": "^15.5.8"
   },
   "devDependencies": {
@@ -47,7 +47,7 @@
     "eslint-plugin-react": "^6.10.3",
     "expose-loader": "^0.7.1",
     "fbemitter": "^2.0.2",
-    "fbjs": "^0.8.0",
+    "fbjs": "^0.8.17",
     "isparta-loader": "^2.0.0",
     "karma": "^0.13.22",
     "karma-browserstack-launcher": "^0.1.10",
